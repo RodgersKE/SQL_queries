@@ -95,7 +95,6 @@ INNER JOIN ex4_aisle a
 USING (aisle_id)
 INNER JOIN ex4_product p
 ON o.product_id = p.product_id
-WHERE p.product_name ILIKE '%non alcoholic%'
+WHERE p.product_name ILIKE '%non alcoholic%' OR p.product_name ILIKE '%non-alcoholic%'
 GROUP BY a.aisle
-ORDER BY non_alcoholics DESC
-LIMIT 1;
+ORDER BY non_alcoholics DESC;
