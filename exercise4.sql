@@ -76,7 +76,7 @@ LIMIT 1;
 
 -- Q4: Which aisle contains most of the organic products?
 
-SELECT a.aisle, COUNT(DISTINCT(p.product_id)) AS num_organic
+SELECT a.aisle, COUNT(DISTINCT(o.product_id)) AS num_organic
 FROM ex4_orders o
 INNER JOIN ex4_aisle a
 USING (aisle_id)
@@ -89,10 +89,13 @@ LIMIT 1;
 
 -- Q5: Which aisle(s) can I find all of the non-alcoholic drinks? 
 
-SELECT DISTINCT a.aisle, p.product_name
+SELECT a.aisle, COUNT(DISTINCT(o.product_id)) AS non_alcoholics
 FROM ex4_orders o
 INNER JOIN ex4_aisle a
 USING (aisle_id)
 INNER JOIN ex4_product p
 ON o.product_id = p.product_id
-WHERE product_name ILIKE '%non alcoholic%';
+WHERE p.product_name ILIKE '%non alcoholic%'
+GROUP BY a.aisle
+ORDER BY non_alcoholics DESC
+LIMIT 1;
