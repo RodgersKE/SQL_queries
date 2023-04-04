@@ -37,7 +37,6 @@ FROM ex4_dept
 
 SELECT *
 FROM ex4_product
-WHERE product_name ILIKE '%organic%'
 
 SELECT *
 FROM ex4_orders
